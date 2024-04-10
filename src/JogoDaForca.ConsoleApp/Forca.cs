@@ -39,7 +39,7 @@
                 Console.WriteLine("\n " + exibicao);
 
                 if (!exibicao.Contains("_")) {
-                    Console.WriteLine("\nVocê Ganhou!!! Pressione enter para tentar novamente!");
+                    Console.WriteLine("\nVocê Ganhou!!! Pressione enter para jogar novamente!");
                     Console.ReadLine();
                     return;
                 }
@@ -48,15 +48,15 @@
                     Console.ReadLine();
                     return;
                 }
-
+                Console.WriteLine($"Letras já utilizadas: {letrasUsadas}");
                 Console.Write("\nQual o seu chute? ");
                 chute = Console.ReadLine().ToUpper();
-                if (letrasUsadas.Contains(chute.ToCharArray()[0])) {
-                    Console.WriteLine("A letra já foi utilizada! Precione qualquer enter para continuar");
+                if (chute.Length > 0 && letrasUsadas.Contains(chute.ToCharArray()[0])) {
+                    Console.WriteLine("A letra já foi utilizada! Pressione qualquer enter para continuar");
                     Console.ReadLine();
                 }
-                else {
-                    letrasUsadas += chute[0];
+                else if (chute.Length > 0) {
+                    letrasUsadas += chute[0] + " ";
                     exibicao = VerificaLetra(palavra, exibicao, chute, ref erros);
                 }
 
