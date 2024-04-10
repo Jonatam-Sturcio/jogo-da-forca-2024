@@ -1,7 +1,7 @@
 ﻿namespace JogoDaForca.ConsoleApp {
     internal class Forca {
         private string[] lista = { "ABACAXI", "ABACATE", "ACEROLA", "AÇAÍ", "ARAÇA", "BACABA", "BACURI", "BANANA", "CAJÁ", "CAJÚ", "CARAMBOLA", "CUPUAÇU", "GRAVIOLA", "GOIABA", "JABUTICABA", "JENIPAPO", "MAÇÃ", "MANGABA", "MANGA", "MARACUJÁ", "MURICI", "PEQUI", "PITANGA", "PITAYA", "SAPOTI", "TANGERINA", "UMBU", "UVA", "UVAIA" };
-
+        private int erros = 0;
         private void MontarForca(int erros) {
             Console.WriteLine(" " + new string('_', 10));
             Console.WriteLine(" |/" + new string(' ', 7) + "|");
@@ -30,7 +30,6 @@
             return this.lista[new Random().Next(1, lista.Length)];
         }
         public void IniciarJogo() {
-            int erros = 0;
             string palavra = SelecionarPalavra();
             string chute, letrasUsadas = "", exibicao = new string('_', palavra.Length);
 
@@ -57,13 +56,13 @@
                 }
                 else if (chute.Length > 0) {
                     letrasUsadas += chute[0] + " ";
-                    exibicao = VerificaLetra(palavra, exibicao, chute, ref erros);
+                    exibicao = VerificaLetra(palavra, exibicao, chute);
                 }
 
                 Console.Clear();
             }
         }
-        private string VerificaLetra(string palavra, string exibicao, string chute, ref int erros) {
+        private string VerificaLetra(string palavra, string exibicao, string chute) {
             char[] chars = exibicao.ToCharArray();
             if (palavra.Contains(chute.ToArray()[0])) {
                 for (int i = 0; i < palavra.Length; i++) {
@@ -73,7 +72,7 @@
                 }
             }
             else {
-                erros++;
+                this.erros++;
                 return exibicao;
             }
             return exibicao = new string(chars);
