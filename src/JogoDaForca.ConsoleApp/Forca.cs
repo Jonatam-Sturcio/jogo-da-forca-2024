@@ -26,12 +26,12 @@
             Console.WriteLine(" |");
             Console.WriteLine("_|____");
         }
-        private string SelecionarPalavra(string[] lista) {
-            return lista[new Random().Next(1, lista.Length)];
+        private string SelecionarPalavra() {
+            return this.lista[new Random().Next(1, lista.Length)];
         }
         public void IniciarJogo() {
             int erros = 0;
-            string palavra = SelecionarPalavra(this.lista);
+            string palavra = SelecionarPalavra();
             string chute, letrasUsadas = "", exibicao = new string('_', palavra.Length);
 
             while (true) {
